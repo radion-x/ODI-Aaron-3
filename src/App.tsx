@@ -68,9 +68,12 @@ function App() {
   };
 
   const handleRestart = () => {
-    setCurrentStep('userInfo'); // Go back to the info form
-    setUserDetails(null);
-    setAssessmentData(null);
+    setAssessmentData(null); // Reset assessment data
+    if (userDetails) {
+      setCurrentStep('assessment'); // If user details exist, go directly to assessment
+    } else {
+      setCurrentStep('userInfo'); // Otherwise, go to user info form
+    }
   };
   
   // This function is called when 'Back' is clicked during the assessment
@@ -123,10 +126,23 @@ function App() {
         </div>
         <button
           onClick={handleRestart}
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          className="w-full max-w-md px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
         >
           Start New Assessment
         </button>
+
+        {/* Spine IQ Evaluation Section */}
+        <div className="mt-8 pt-6 border-t border-gray-300 w-full max-w-md text-center">
+          <p className="text-gray-700 mb-4 text-sm leading-relaxed">
+            Now that you’ve completed the Oswestry Disability Index quiz, consider taking the next step with Prof. Aaron Buckland’s personalised evaluation—it’s designed to explore potential pathways for your spine health and help you understand the options available to you.
+          </p>
+          <button
+            onClick={() => { window.open('https://app.aaronbuckland.com/', '_blank', 'noopener,noreferrer'); }}
+            className="px-8 py-3 bg-teal-500 text-white rounded-lg font-semibold hover:bg-teal-600 transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-75"
+          >
+            Spine IQ Evaluation
+          </button>
+        </div>
       </div>
     );
   }

@@ -6,13 +6,13 @@ import { getSeverityColor, getSeverityDescription } from '../utils/scoring';
 interface CompletionSummaryProps {
   data: FunctionalIndexData;
   onRestart: () => void;
-  onContinue: () => void;
+  onContinue: () => void; // Kept in props in case it's used elsewhere or needed later
 }
 
 export const CompletionSummary: React.FC<CompletionSummaryProps> = ({
   data,
   onRestart,
-  onContinue
+  // onContinue // Intentionally not used in the JSX below to remove the button
 }) => {
   const getSeverityIcon = (severity: string) => {
     switch (severity) {
@@ -94,20 +94,28 @@ export const CompletionSummary: React.FC<CompletionSummaryProps> = ({
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      {/* Actions Section */}
+      <div className="space-y-6 mt-8">
+        {/* Start New Assessment Button */}
         <button
-          onClick={onRestart}
-          className="flex-1 px-6 py-3 bg-gray-100 text-gray-700 rounded-xl font-medium hover:bg-gray-200 transition-colors duration-200"
+          onClick={onRestart} 
+          className="w-full px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
         >
-          Retake Assessment
+          Start New Assessment
         </button>
-        <button
-          onClick={onContinue}
-          className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors duration-200"
-        >
-          Continue to Next Step
-        </button>
+
+        {/* Spine IQ Evaluation Section */}
+        <div className="pt-6 border-t border-gray-200 text-center">
+          <p className="text-gray-700 mb-4 text-sm leading-relaxed max-w-2xl mx-auto">
+            Now that you’ve completed the Oswestry Disability Index quiz, consider taking the next step with Prof. Aaron Buckland’s personalised evaluation—it’s designed to explore potential pathways for your spine health and help you understand the options available to you.
+          </p>
+          <button
+            onClick={() => { window.open('https://app.aaronbuckland.com/', '_blank', 'noopener,noreferrer'); }}
+            className="px-8 py-3 bg-teal-500 text-white rounded-xl font-semibold hover:bg-teal-600 transition-colors duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-75 w-full sm:w-auto"
+          >
+            Spine IQ Evaluation
+          </button>
+        </div>
       </div>
     </div>
   );
