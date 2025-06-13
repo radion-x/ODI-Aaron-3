@@ -1,0 +1,140 @@
+[
+  {
+    "userDetails": {
+      "name": "Radion",
+      "email": "radion@websited.org"
+    },
+    "assessmentData": {
+      "branchId": "oswestryBack",
+      "responses": [
+        {
+          "questionId": "walking",
+          "value": 0,
+          "score": 0
+        },
+        {
+          "questionId": "sitting",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "sleep",
+          "value": 2,
+          "score": 2
+        },
+        {
+          "questionId": "work",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "personalCare",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "lifting",
+          "value": 4,
+          "score": 4
+        }
+      ],
+      "totalScore": 16,
+      "maxScore": 24,
+      "severityLevel": "severe",
+      "completedAt": "2025-06-11T09:49:41.194Z"
+    },
+    "receivedAt": "2025-06-11T09:49:45.336Z"
+  },
+  {
+    "userDetails": {
+      "name": "Radion",
+      "email": "Jessiloverv@gmail.com"
+    },
+    "assessmentData": {
+      "branchId": "oswestryBack",
+      "responses": [
+        {
+          "questionId": "walking",
+          "value": 0,
+          "score": 0
+        },
+        {
+          "questionId": "sitting",
+          "value": 1,
+          "score": 1
+        },
+        {
+          "questionId": "sleep",
+          "value": 2,
+          "score": 2
+        },
+        {
+          "questionId": "work",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "personalCare",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "lifting",
+          "value": 4,
+          "score": 4
+        }
+      ],
+      "totalScore": 13,
+      "maxScore": 24,
+      "severityLevel": "moderate",
+      "completedAt": "2025-06-12T06:45:17.196Z"
+    },
+    "receivedAt": "2025-06-12T06:45:28.617Z"
+  },
+  {
+    "userDetails": {
+      "name": "Radion",
+      "email": "radsokolov@gmail.com"
+    },
+    "assessmentData": {
+      "branchId": "oswestryBack",
+      "responses": [
+        {
+          "questionId": "walking",
+          "value": 1,
+          "score": 1
+        },
+        {
+          "questionId": "sitting",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "sleep",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "work",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "personalCare",
+          "value": 2,
+          "score": 2
+        },
+        {
+          "questionId": "lifting",
+          "value": 3,
+          "score": 3
+        }
+      ],
+      "totalScore": 17,
+      "maxScore": 24,
+      "severityLevel": "severe",
+      "completedAt": "2025-06-13T08:53:01.480Z"
+    },
+    "receivedAt": "2025-06-13T08:53:04.975Z"
+  }
+]
