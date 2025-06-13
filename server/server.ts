@@ -1,4 +1,4 @@
-import * as expressNs from 'express'; // Changed to namespace import
+import express, { Request, Response, Application } from 'express'; // Import Request, Response, Application directly
 import cors from 'cors';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -10,8 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Access default export for the express function
-const express = expressNs.default; 
-const app: expressNs.Application = express();
+const app: Application = express(); // Use Application type directly and remove expressNs.default
 const PORT = process.env.PORT || 3001; // Backend server port
 
 // Middleware
@@ -40,9 +39,9 @@ interface AssessmentPayload {
 }
 
 // API Endpoint to save assessment data
-app.post('/api/save-assessment', (req: expressNs.Request<{}, {}, AssessmentPayload>, res: expressNs.Response) => {
+app.post('/api/save-assessment', (req: Request, res: Response) => { // Simplified req type for now
   try {
-    const newRecord = req.body;
+    const newRecord = req.body as AssessmentPayload; // Add type assertion for req.body
 
     if (!newRecord || !newRecord.userDetails || !newRecord.assessmentData) {
       return res.status(400).json({ message: 'Invalid data format.' });
@@ -67,7 +66,7 @@ app.post('/api/save-assessment', (req: expressNs.Request<{}, {}, AssessmentPaylo
 });
 
 // API Endpoint to get all assessment data (optional, for verification)
-app.get('/api/get-assessments', (req: expressNs.Request, res: expressNs.Response) => {
+app.get('/api/get-assessments', (req: Request, res: Response) => {
   try {
     if (!fs.existsSync(DATA_FILE_PATH)) {
       return res.status(200).json([]);
