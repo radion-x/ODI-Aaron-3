@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2022", // Updated target
-    "module": "esnext",  // Changed to ESNext for ES Modules
+    "module": "nodenext",  // Changed to ESNext for ES Modules
     "lib": ["es2022"],   // Updated lib
     "outDir": "./dist", // Output compiled JS within server/dist
     "rootDir": ".",
@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "sourceMap": true,
     "types": ["node", "express"] // Explicitly include types for node and express
   },

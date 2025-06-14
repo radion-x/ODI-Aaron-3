@@ -12,7 +12,7 @@ interface CompletionSummaryProps {
 export const CompletionSummary: React.FC<CompletionSummaryProps> = ({
   data,
   onRestart,
-  // onContinue // Intentionally not used in the JSX below to remove the button
+  onContinue // Now we will use this
 }) => {
   const getSeverityIcon = (severity: string) => {
     switch (severity) {
@@ -96,6 +96,14 @@ export const CompletionSummary: React.FC<CompletionSummaryProps> = ({
 
       {/* Actions Section */}
       <div className="space-y-6 mt-8">
+        {/* Save and Continue Button */}
+        <button
+          onClick={onContinue}
+          className="w-full px-6 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-colors duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
+        >
+          Continue to Summary
+        </button>
+
         {/* Start New Assessment Button */}
         <button
           onClick={onRestart} 
@@ -104,18 +112,6 @@ export const CompletionSummary: React.FC<CompletionSummaryProps> = ({
           Start New Assessment
         </button>
 
-        {/* Spine IQ Evaluation Section */}
-        <div className="pt-6 border-t border-gray-200 text-center">
-          <p className="text-gray-700 mb-4 text-sm leading-relaxed max-w-2xl mx-auto">
-            Now that you’ve completed the Oswestry Disability Index quiz, consider taking the next step with Prof. Aaron Buckland’s personalised evaluation—it’s designed to explore potential pathways for your spine health and help you understand the options available to you.
-          </p>
-          <button
-            onClick={() => { window.open('https://app.aaronbuckland.com/', '_blank', 'noopener,noreferrer'); }}
-            className="px-8 py-3 bg-teal-500 text-white rounded-xl font-semibold hover:bg-teal-600 transition-colors duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-75 w-full sm:w-auto"
-          >
-            Spine IQ Evaluation
-          </button>
-        </div>
       </div>
     </div>
   );
