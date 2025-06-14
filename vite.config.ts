@@ -7,4 +7,15 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  server: {
+    proxy: {
+      // string shorthand: /api -> http://localhost:3001/api
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        // Optionally, you can rewrite the path if needed, but for /api -> /api it's not.
+        // rewrite: (path) => path.replace(/^\/api/, '') 
+      },
+    },
+  },
 });

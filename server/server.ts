@@ -157,7 +157,8 @@ const PORT = process.env.PORT || 3001; // Backend server port
 app.use(cors()); // Enable CORS for all routes
 app.use(express.json()); // Parse JSON request bodies
 
-const DATA_FILE_PATH = path.join(__dirname, 'assessments_data.json');
+// Correctly point to assessments_data.json in the server/ folder, not server/dist/
+const DATA_FILE_PATH = path.resolve(__dirname, '../assessments_data.json');
 
 // Ensure the data file exists
 const initializeDataFile = () => {

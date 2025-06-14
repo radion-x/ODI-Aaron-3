@@ -36,22 +36,22 @@ export const UserInfoForm: React.FC<UserInfoFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <div className="max-w-lg w-full bg-white p-8 md:p-10 rounded-xl shadow-2xl border border-slate-200">
+    <div className="max-w-lg w-full bg-white p-8 md:p-10 rounded-xl shadow-2xl border border-gray-200"> {/* Subtle border */}
       <div className="text-center mb-8">
         {/* Optional: Placeholder for a logo icon if you have one from lucide-react or an SVG */}
-        {/* <div className="inline-block p-3 bg-teal-100 rounded-full mb-4">
-          <YourLogoIcon className="w-8 h-8 text-teal-600" />
+        {/* <div className="inline-block p-3 bg-brand-primary/10 rounded-full mb-4">
+          <YourLogoIcon className="w-8 h-8 text-brand-primary" />
         </div> */}
-        <h1 className="text-3xl font-bold text-slate-800 mb-2">
+        <h1 className="text-3xl font-bold text-brand-text-heading mb-2">
           Patient Information
         </h1>
-        <p className="text-slate-600 text-base">
+        <p className="text-brand-text-body text-base">
           Please provide your details to begin the Modified Oswestry Disability Index.
         </p>
       </div>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="name" className="block text-sm font-medium text-brand-text-body mb-1.5">
             Full Name
           </label>
           <input
@@ -60,14 +60,14 @@ export const UserInfoForm: React.FC<UserInfoFormProps> = ({ onSubmit }) => {
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className={`w-full px-4 py-3 border rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:text-sm ${nameError ? 'border-red-500' : 'border-slate-300'}`}
+            className={`w-full px-4 py-3 border rounded-md shadow-sm focus:ring-brand-primary focus:border-brand-primary sm:text-sm ${nameError ? 'border-red-500' : 'border-gray-300'}`}
             aria-describedby="name-error"
             placeholder="e.g., Jane Doe"
           />
           {nameError && <p className="mt-1.5 text-xs text-red-600" id="name-error">{nameError}</p>}
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="email" className="block text-sm font-medium text-brand-text-body mb-1.5">
             Email Address
           </label>
           <input
@@ -76,7 +76,7 @@ export const UserInfoForm: React.FC<UserInfoFormProps> = ({ onSubmit }) => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className={`w-full px-4 py-3 border rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500 sm:text-sm ${emailError ? 'border-red-500' : 'border-slate-300'}`}
+            className={`w-full px-4 py-3 border rounded-md shadow-sm focus:ring-brand-primary focus:border-brand-primary sm:text-sm ${emailError ? 'border-red-500' : 'border-gray-300'}`}
             aria-describedby="email-error"
             placeholder="e.g., you@example.com"
           />
@@ -85,13 +85,13 @@ export const UserInfoForm: React.FC<UserInfoFormProps> = ({ onSubmit }) => {
         <div className="pt-2">
           <button
             type="submit"
-            className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors duration-150"
+            className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-brand-primary hover:bg-brand-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary-dark transition-colors duration-150"
           >
             Start Assessment
           </button>
         </div>
       </form>
-       <div className="mt-10 text-center text-xs text-slate-500">
+       <div className="mt-10 text-center text-xs text-gray-600"> {/* Consistent muted text */}
           This information is used solely for the purpose of this assessment and will be handled with confidentiality.
         </div>
     </div>

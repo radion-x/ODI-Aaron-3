@@ -43,7 +43,7 @@ function App() {
       const fullRecord = { userDetails, assessmentData: data };
       console.log('Attempting to save full record:', fullRecord);
 
-      fetch('http://localhost:3001/api/save-assessment', {
+      fetch('/api/save-assessment', { // Relative path
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ function App() {
           setIsInterpreting(true);
           setAiInterpretation(null);
           setInterpretationError(null);
-          fetch('http://localhost:3001/api/interpret-assessment', {
+          fetch('/api/interpret-assessment', { // Relative path
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ function App() {
     setUserEmailError(null);
 
     try {
-      const response = await fetch('http://localhost:3001/api/email-results-to-user', {
+      const response = await fetch('/api/email-results-to-user', { // Relative path
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -177,7 +177,7 @@ function App() {
 
   if (currentStep === 'userInfo') {
     return (
-      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6">
+      <div className="min-h-screen bg-brand-bg-light flex flex-col items-center justify-center p-6 sm:p-8">
         {/* Optional: Placeholder for a logo or clinic name */}
         {/* <div className="mb-8 text-center">
           <img src="/path-to-your-logo.svg" alt="Clinic Logo" className="h-12 mx-auto" />
@@ -190,7 +190,7 @@ function App() {
 
   if (currentStep === 'assessment') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="min-h-screen bg-brand-bg-light py-6 sm:py-12"> {/* Consistent background */}
         <FunctionalIndexStep
           primaryCondition={selectedCondition} // Always 'Back'
           onComplete={handleAssessmentComplete}
@@ -202,49 +202,49 @@ function App() {
 
   if (currentStep === 'completed' && assessmentData) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-6 text-center">
-        <div className="mx-auto w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center mb-4">
-          <Activity className="w-8 h-8 text-white" /> {/* Placeholder icon */}
+      <div className="min-h-screen bg-brand-bg-light flex flex-col items-center justify-center p-6 sm:p-8 text-center"> {/* Consistent background */}
+        <div className="mx-auto w-16 h-16 bg-brand-primary rounded-full flex items-center justify-center mb-6"> {/* Main accent for icon bg */}
+          <Activity className="w-8 h-8 text-white" />
         </div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl font-bold text-brand-text-heading mb-2"> {/* Title color */}
           Assessment Complete!
         </h1>
-        {userDetails && <p className="text-gray-700 mb-1">Thank you, {userDetails.name}.</p>}
-        <p className="text-gray-600 mb-4">
+        {userDetails && <p className="text-brand-text-body mb-1">Thank you, {userDetails.name}.</p>} {/* Text color */}
+        <p className="text-gray-700 mb-6 text-lg"> {/* Text color and size */}
           Your Modified Oswestry Disability Index results are ready.
         </p>
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6 text-left w-full max-w-md">
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">Summary:</h3>
-          <p className="text-gray-700 mb-1"><strong>Name:</strong> {userDetails?.name}</p>
-          <p className="text-gray-700 mb-1"><strong>Email:</strong> {userDetails?.email}</p>
-          <p className="text-gray-700 mb-1"><strong>Total Score:</strong> {assessmentData.totalScore} / {assessmentData.maxScore}</p>
-          <p className="text-gray-700"><strong>Severity:</strong> {assessmentData.severityLevel.charAt(0).toUpperCase() + assessmentData.severityLevel.slice(1)}</p>
+        <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-200 mb-6 text-left w-full max-w-md"> {/* Card style */}
+          <h3 className="text-xl font-semibold text-brand-text-heading mb-4">Summary:</h3> {/* Card title color */}
+          <p className="text-brand-text-body mb-1.5"><strong>Name:</strong> {userDetails?.name}</p> {/* Text color */}
+          <p className="text-brand-text-body mb-1.5"><strong>Email:</strong> {userDetails?.email}</p> {/* Text color */}
+          <p className="text-brand-text-body mb-1.5"><strong>Total Score:</strong> {assessmentData.totalScore} / {assessmentData.maxScore}</p> {/* Text color */}
+          <p className="text-brand-text-body"><strong>Severity:</strong> {assessmentData.severityLevel.charAt(0).toUpperCase() + assessmentData.severityLevel.slice(1)}</p> {/* Text color */}
         </div>
 
         {/* AI Interpretation Section */}
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6 text-left w-full max-w-md">
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">AI Observations:</h3>
+        <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-200 mb-6 text-left w-full max-w-md"> {/* Card style */}
+          <h3 className="text-xl font-semibold text-brand-text-heading mb-4">AI Observations:</h3> {/* Card title color */}
           {isInterpreting && (
-            <div className="flex items-center text-gray-600">
+            <div className="flex items-center text-gray-700"> {/* Text color */}
               <Spinner />
               <span className="ml-2">Generating observations...</span>
             </div>
           )}
           {interpretationError && <p className="text-red-600">Error: {interpretationError}</p>}
-          {aiInterpretation && !isInterpreting && <p className="text-gray-700 whitespace-pre-wrap">{aiInterpretation}</p>}
+          {aiInterpretation && !isInterpreting && <p className="text-brand-text-body whitespace-pre-wrap">{aiInterpretation}</p>} {/* Consistent text color */}
         </div>
         
         {userDetails && assessmentData && aiInterpretation && (
           <button
             onClick={handleEmailResultsToUser}
-            disabled={isSendingUserEmail || !!userEmailSentMessage} // Disable if sending or already sent
-            className="w-full max-w-md px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:bg-gray-400 mb-3"
+            disabled={isSendingUserEmail || !!userEmailSentMessage} 
+            className="w-full max-w-md px-6 py-3 bg-brand-success text-white rounded-md shadow-sm hover:bg-brand-success-dark transition-colors disabled:opacity-60 disabled:bg-green-300 mb-4" // Consistent button, adjusted disabled state
           >
             {isSendingUserEmail ? 'Sending Email...' : (userEmailSentMessage ? 'Email Sent!' : `Email Results to ${userDetails.email}`)}
           </button>
         )}
-        {userEmailSentMessage && !isSendingUserEmail && <p className="text-green-600 mb-3">{userEmailSentMessage}</p>}
-        {userEmailError && <p className="text-red-600 mb-3">Error: {userEmailError}</p>}
+        {userEmailSentMessage && !isSendingUserEmail && <p className="text-brand-success mb-4 text-sm">{userEmailSentMessage}</p>} {/* Consistent success message */}
+        {userEmailError && <p className="text-red-600 mb-4 text-sm">Error: {userEmailError}</p>}
 
         {/* "Start New Assessment" button is removed from here. 
            If restart functionality is still needed, it could be a smaller link elsewhere or handled differently.
@@ -254,12 +254,12 @@ function App() {
 
         {/* Spine IQ Evaluation Section */}
         <div className="mt-8 pt-6 border-t border-gray-300 w-full max-w-md text-center">
-          <p className="text-gray-700 mb-4 text-sm leading-relaxed">
+          <p className="text-gray-700 mb-4 text-sm leading-relaxed"> {/* Text color */}
             Now that you’ve completed the Oswestry Disability Index quiz, consider taking the next step with Prof. Aaron Buckland’s personalised evaluation—it’s designed to explore potential pathways for your spine health and help you understand the options available to you.
           </p>
           <button
             onClick={() => { window.open('https://app.aaronbuckland.com/', '_blank', 'noopener,noreferrer'); }}
-            className="px-8 py-3 bg-teal-500 text-white rounded-lg font-semibold hover:bg-teal-600 transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-75"
+            className="w-full max-w-md px-8 py-3 bg-brand-primary text-white rounded-md shadow-sm font-semibold hover:bg-brand-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-primary-dark" // Button style
           >
             Spine IQ Evaluation
           </button>
@@ -270,8 +270,8 @@ function App() {
 
   // Fallback / Default view (should ideally not be reached with the new step logic)
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-6">
-      <p>Loading...</p>
+    <div className="min-h-screen bg-brand-bg-light flex items-center justify-center p-6 sm:p-8"> {/* Consistent background */}
+      <p className="text-brand-text-body">Loading...</p> {/* Consistent text color */}
     </div>
   );
 } // This closes the App function component

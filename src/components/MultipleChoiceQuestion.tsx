@@ -16,7 +16,7 @@ export const MultipleChoiceQuestion: React.FC<MultipleChoiceQuestionProps> = ({
 }) => {
   return (
     <div className="space-y-6">
-      <h3 className="text-xl font-semibold text-gray-900 leading-relaxed">
+      <h3 className="text-xl font-semibold text-brand-text-heading leading-relaxed"> {/* Text color */}
         {question}
       </h3>
       
@@ -25,17 +25,17 @@ export const MultipleChoiceQuestion: React.FC<MultipleChoiceQuestionProps> = ({
           <button
             key={index}
             onClick={() => onSelect(index)}
-            className={`w-full p-4 text-left rounded-xl border-2 transition-all duration-200 ${
+            className={`w-full p-4 text-left rounded-lg border-2 transition-all duration-150 ease-in-out group ${
               selectedOption === index
-                ? 'border-blue-500 bg-blue-50 text-blue-900'
-                : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50'
-            } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
+                ? 'border-brand-primary bg-brand-primary/10 text-brand-primary shadow-md' // Selected style
+                : 'border-gray-300 bg-white hover:border-brand-primary/70 hover:bg-brand-primary/5 text-brand-text-body' // Default style
+            } focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-1`} // Focus style
             aria-pressed={selectedOption === index}
           >
             <div className="flex items-center justify-between">
-              <span className="font-medium">{option}</span>
+              <span className={`font-medium ${selectedOption === index ? 'text-brand-primary' : 'text-brand-text-body group-hover:text-brand-text-heading'}`}>{option}</span> {/* Text color */}
               {selectedOption === index && (
-                <Check className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                <Check className="w-5 h-5 text-brand-primary flex-shrink-0" /> // Icon color
               )}
             </div>
           </button>
