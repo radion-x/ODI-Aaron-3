@@ -241,7 +241,7 @@ This information provides a valuable snapshot of your current functional status 
 
     const msg = await anthropic.messages.create({
       model: "claude-3-opus-20240229", // Or your preferred model
-      max_tokens: 150,
+      max_tokens: 1024,
       messages: [{ role: "user", content: prompt }],
     });
 
