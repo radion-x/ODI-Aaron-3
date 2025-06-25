@@ -51,12 +51,13 @@ async function sendEmailNotification(to: string, subject: string, html: string) 
 }
 
 // Helper to format admin email
-function formatAdminEmailHTML(userDetails: UserDetails, assessmentData: any, aiInterpretation: string): string {
+function formatAdminEmailHTML(userDetails: UserDetails, assessmentData: FullAssessmentPayloadForInterpretation['assessmentData'], aiInterpretation: string): string {
+  const percentage = Math.round((assessmentData.totalScore / assessmentData.maxScore) * 100);
   let responsesHTML = '';
   if (assessmentData.responses && Array.isArray(assessmentData.responses) && assessmentData.responses.length > 0) {
     responsesHTML += '<h3 style="color: #2c3e50; font-size: 18px; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #ecf0f1; padding-bottom: 5px;">Individual Responses:</h3>';
     responsesHTML += '<table style="width: 100%; border-collapse: collapse; font-size: 14px;"><thead><tr><th style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Question ID</th><th style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Value</th><th style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd; background-color: #f9f9f9;">Score</th></tr></thead><tbody>';
-    assessmentData.responses.forEach((resp: any, index: number) => {
+    assessmentData.responses.forEach((resp: { questionId: string; value: string | number; score: number }, index: number) => {
       responsesHTML += `<tr>
         <td style="padding: 8px; border-bottom: 1px solid #eee;">${resp.questionId || `Q${index + 1}`}</td>
         <td style="padding: 8px; border-bottom: 1px solid #eee;">${resp.value}</td>
@@ -81,7 +82,7 @@ function formatAdminEmailHTML(userDetails: UserDetails, assessmentData: any, aiI
         <p style="color: #555; font-size: 16px; line-height: 1.6; margin: 5px 0;"><strong>Email:</strong> ${userDetails.email}</p>
 
         <h2 style="color: #2c3e50; font-size: 20px; margin-top: 30px; margin-bottom: 15px;">Assessment Summary</h2>
-        <p style="color: #555; font-size: 16px; line-height: 1.6; margin: 5px 0;"><strong>Total Score:</strong> ${assessmentData.totalScore} / ${assessmentData.maxScore}</p>
+        <p style="color: #555; font-size: 16px; line-height: 1.6; margin: 5px 0;"><strong>Total Score:</strong> ${assessmentData.totalScore} / ${assessmentData.maxScore} (${percentage}%)</p>
         <p style="color: #555; font-size: 16px; line-height: 1.6; margin: 5px 0;"><strong>Severity Level:</strong> ${assessmentData.severityLevel}</p>
         <p style="color: #555; font-size: 16px; line-height: 1.6; margin: 5px 0;"><strong>Completed At:</strong> ${new Date(assessmentData.completedAt).toLocaleString()}</p>
         
@@ -104,7 +105,8 @@ function formatAdminEmailHTML(userDetails: UserDetails, assessmentData: any, aiI
 }
 
 // Helper to format user email
-function formatUserEmailHTML(userDetails: UserDetails, assessmentData: any, aiInterpretation: string): string {
+function formatUserEmailHTML(userDetails: UserDetails, assessmentData: EmailToUserPayload['assessmentData'], aiInterpretation: string): string {
+  const percentage = Math.round((assessmentData.totalScore / assessmentData.maxScore) * 100);
   return `
 <body style="margin: 0; padding: 0; background-color: #f4f7f6; font-family: Arial, sans-serif;">
   <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
@@ -120,7 +122,7 @@ function formatUserEmailHTML(userDetails: UserDetails, assessmentData: any, aiIn
 
         <div style="background-color: #f9f9f9; padding: 20px; border-radius: 6px; margin-bottom: 25px;">
           <h2 style="color: #2c3e50; font-size: 20px; margin-top: 0; margin-bottom: 15px;">Assessment Results</h2>
-          <p style="color: #555; font-size: 16px; line-height: 1.6; margin: 8px 0;"><strong>Total Score:</strong> ${assessmentData.totalScore} / ${assessmentData.maxScore}</p>
+          <p style="color: #555; font-size: 16px; line-height: 1.6; margin: 8px 0;"><strong>Total Score:</strong> ${assessmentData.totalScore} / ${assessmentData.maxScore} (${percentage}%)</p>
           <p style="color: #555; font-size: 16px; line-height: 1.6; margin: 8px 0;"><strong>Severity Level:</strong> ${assessmentData.severityLevel}</p>
         </div>
 
@@ -200,7 +202,7 @@ interface EmailToUserPayload {
 
 interface AssessmentPayload {
   userDetails: UserDetails;
-  assessmentData: any; // Consider defining a more specific type for assessmentData
+  assessmentData: FullAssessmentPayloadForInterpretation['assessmentData'];
 }
 
 // API Endpoint to get AI interpretation AND send admin email
@@ -212,14 +214,29 @@ app.post('/api/interpret-assessment', async (req: express.Request, res: express.
       return res.status(400).json({ message: 'Missing required user or assessment data for interpretation.' });
     }
     const { totalScore, maxScore, severityLevel } = assessmentData;
+    const percentage = Math.round((totalScore / maxScore) * 100);
 
     const prompt = `
-The following is a summary of a Modified Oswestry Disability Index for back pain:
-- Total Score: ${totalScore}
-- Maximum Possible Score: ${maxScore}
-- Calculated Severity Level: ${severityLevel}
+You are an AI assistant for a spine health clinic. Your task is to provide a clear and valuable observation based on a patient's Modified Oswestry Disability Index (ODI) score. The observation will be read by both the patient and their doctor.
 
-Based on this information, provide a brief, neutral observation about the reported impact on the individual's daily life. Focus on what the score and severity generally indicate in terms of functional limitation. Do not provide medical advice, recommendations, or prognoses. Do not suggest specific exercises or treatments. Keep the tone objective and observational. For example, if the severity is "severe", an observation might be "The score suggests that back pain is having a significant impact on the individual's ability to perform daily activities." If the severity is "mild", an observation might be "The score suggests that back pain is causing a low level of disruption to daily activities."
+Here is the patient's assessment summary:
+- Total Score: ${totalScore} out of ${maxScore}
+- Percentage Score: ${percentage}%
+- Severity Level: "${severityLevel}"
+
+Based on this summary, please provide a concise, multi-paragraph observation that:
+1.  Starts by acknowledging the patient's submission and stating the score.
+2.  Explains what the ODI is used for (i.e., to quantify disability from low back pain).
+3.  Interprets the patient's specific score and severity level in the context of functional limitation. For example, explain what a "Severe disability" level generally means for daily activities.
+4.  Maintains a neutral, objective, and encouraging tone.
+5.  IMPORTANT: Do NOT provide medical advice, a diagnosis, or specific treatment recommendations (e.g., "you should see a doctor," "try these exercises"). The goal is to provide context for the score, not to direct care.
+
+Example for "Severe disability":
+"Thank you for completing the Modified Oswestry Disability Index questionnaire. Your score of ${totalScore}/${maxScore} (${percentage}%) places you in the 'Severe disability' category.
+
+The Oswestry Disability Index is a tool used to help measure the level of disability resulting from low back pain. A score in the 'Severe disability' range suggests that your back pain is having a significant impact on your ability to perform many daily activities, such as sitting, standing, and lifting.
+
+This information provides a valuable snapshot of your current functional status and will be a helpful reference point for discussing your spine health with your healthcare provider."
 `;
 
     const msg = await anthropic.messages.create({

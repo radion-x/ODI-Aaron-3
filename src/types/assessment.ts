@@ -21,12 +21,19 @@ export interface AssessmentResponse {
   score: number;
 }
 
+export type SeverityLevel =
+  | 'Minimal disability'
+  | 'Moderate disability'
+  | 'Severe disability'
+  | 'Crippled'
+  | 'Bed-bound or exaggerating symptoms';
+
 export interface FunctionalIndexData {
   branchId: string;
   responses: AssessmentResponse[];
   totalScore: number;
   maxScore: number;
-  severityLevel: 'mild' | 'moderate' | 'severe';
+  severityLevel: SeverityLevel;
   completedAt: Date;
 }
 

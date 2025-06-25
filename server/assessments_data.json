@@ -320,5 +320,447 @@
       "completedAt": "2025-06-13T10:36:38.323Z"
     },
     "receivedAt": "2025-06-13T10:37:03.345Z"
+  },
+  {
+    "userDetails": {
+      "name": "Radion Sokolov",
+      "email": "radioin@websited.org"
+    },
+    "assessmentData": {
+      "branchId": "oswestryBack",
+      "responses": [
+        {
+          "questionId": "walking",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "sitting",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "sleep",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "work",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "personalCare",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "lifting",
+          "value": 4,
+          "score": 4
+        }
+      ],
+      "totalScore": 22,
+      "maxScore": 24,
+      "severityLevel": "severe",
+      "completedAt": "2025-06-24T01:55:28.421Z"
+    },
+    "receivedAt": "2025-06-24T01:55:29.979Z"
+  },
+  {
+    "userDetails": {
+      "name": "Radion",
+      "email": "radion@websited.org"
+    },
+    "assessmentData": {
+      "branchId": "oswestryBack",
+      "responses": [
+        {
+          "questionId": "painIntensity",
+          "value": 0,
+          "score": 0
+        },
+        {
+          "questionId": "personalCare",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "lifting",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "walking",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "sitting",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "standing",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "sleeping",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "sexLife",
+          "value": 2,
+          "score": 2
+        },
+        {
+          "questionId": "socialLife",
+          "value": 2,
+          "score": 2
+        },
+        {
+          "questionId": "traveling",
+          "value": 4,
+          "score": 4
+        }
+      ],
+      "totalScore": 30,
+      "maxScore": 24,
+      "severityLevel": "severe",
+      "completedAt": "2025-06-24T02:09:48.902Z"
+    },
+    "receivedAt": "2025-06-24T02:14:10.102Z"
+  },
+  {
+    "userDetails": {
+      "name": "Radion",
+      "email": "radion@websited.org"
+    },
+    "assessmentData": {
+      "branchId": "oswestryBack",
+      "responses": [
+        {
+          "questionId": "painIntensity",
+          "value": 0,
+          "score": 0
+        },
+        {
+          "questionId": "personalCare",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "lifting",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "walking",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "sitting",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "standing",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "sleeping",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "sexLife",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "socialLife",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "traveling",
+          "value": 5,
+          "score": 5
+        }
+      ],
+      "totalScore": 43,
+      "maxScore": 50,
+      "severityLevel": "severe",
+      "completedAt": "2025-06-24T02:18:45.416Z"
+    },
+    "receivedAt": "2025-06-24T02:18:52.624Z"
+  },
+  {
+    "userDetails": {
+      "name": "Radion",
+      "email": "radion@websited.org"
+    },
+    "assessmentData": {
+      "branchId": "oswestryBack",
+      "responses": [
+        {
+          "questionId": "painIntensity",
+          "value": 2,
+          "score": 2
+        },
+        {
+          "questionId": "personalCare",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "lifting",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "walking",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "sitting",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "standing",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "sleeping",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "sexLife",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "socialLife",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "traveling",
+          "value": 5,
+          "score": 5
+        }
+      ],
+      "totalScore": 47,
+      "maxScore": 50,
+      "severityLevel": "severe",
+      "completedAt": "2025-06-24T02:24:34.697Z"
+    },
+    "receivedAt": "2025-06-24T02:24:38.203Z"
+  },
+  {
+    "userDetails": {
+      "name": "Radion",
+      "email": "radion@websited.org"
+    },
+    "assessmentData": {
+      "branchId": "oswestryBack",
+      "responses": [
+        {
+          "questionId": "painIntensity",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "personalCare",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "lifting",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "walking",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "sitting",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "standing",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "sleeping",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "sexLife",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "socialLife",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "traveling",
+          "value": 5,
+          "score": 5
+        }
+      ],
+      "totalScore": 47,
+      "maxScore": 50,
+      "severityLevel": "Bed-bound or exaggerating symptoms",
+      "completedAt": "2025-06-24T02:28:23.728Z"
+    },
+    "receivedAt": "2025-06-24T02:28:31.286Z"
+  },
+  {
+    "userDetails": {
+      "name": "Radion",
+      "email": "radion@websited.org"
+    },
+    "assessmentData": {
+      "branchId": "oswestryBack",
+      "responses": [
+        {
+          "questionId": "painIntensity",
+          "value": 2,
+          "score": 2
+        },
+        {
+          "questionId": "personalCare",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "lifting",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "walking",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "sitting",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "standing",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "sleeping",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "sexLife",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "socialLife",
+          "value": 2,
+          "score": 2
+        },
+        {
+          "questionId": "traveling",
+          "value": 1,
+          "score": 1
+        }
+      ],
+      "totalScore": 34,
+      "maxScore": 50,
+      "severityLevel": "Crippled",
+      "completedAt": "2025-06-24T02:32:10.846Z"
+    },
+    "receivedAt": "2025-06-24T02:32:17.315Z"
+  },
+  {
+    "userDetails": {
+      "name": "rad",
+      "email": "radsokolov@gmail.com"
+    },
+    "assessmentData": {
+      "branchId": "oswestryBack",
+      "responses": [
+        {
+          "questionId": "painIntensity",
+          "value": 1,
+          "score": 1
+        },
+        {
+          "questionId": "personalCare",
+          "value": 1,
+          "score": 1
+        },
+        {
+          "questionId": "lifting",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "walking",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "sitting",
+          "value": 3,
+          "score": 3
+        },
+        {
+          "questionId": "standing",
+          "value": 2,
+          "score": 2
+        },
+        {
+          "questionId": "sleeping",
+          "value": 5,
+          "score": 5
+        },
+        {
+          "questionId": "sexLife",
+          "value": 1,
+          "score": 1
+        },
+        {
+          "questionId": "socialLife",
+          "value": 4,
+          "score": 4
+        },
+        {
+          "questionId": "traveling",
+          "value": 2,
+          "score": 2
+        }
+      ],
+      "totalScore": 26,
+      "maxScore": 50,
+      "severityLevel": "Severe disability",
+      "completedAt": "2025-06-24T02:36:49.141Z"
+    },
+    "receivedAt": "2025-06-24T02:36:58.490Z"
   }
 ]

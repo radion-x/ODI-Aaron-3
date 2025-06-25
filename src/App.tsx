@@ -112,20 +112,20 @@ function App() {
     }
   };
 
-  const handleRestart = () => {
-    setAssessmentData(null); // Reset assessment data
-    setAiInterpretation(null);
-    setInterpretationError(null);
-    setIsInterpreting(false);
-    setUserEmailSentMessage(null);
-    setUserEmailError(null);
-    setIsSendingUserEmail(false);
-    if (userDetails) {
-      setCurrentStep('assessment'); // If user details exist, go directly to assessment
-    } else {
-      setCurrentStep('userInfo'); // Otherwise, go to user info form
-    }
-  };
+  // const handleRestart = () => {
+  //   setAssessmentData(null); // Reset assessment data
+  //   setAiInterpretation(null);
+  //   setInterpretationError(null);
+  //   setIsInterpreting(false);
+  //   setUserEmailSentMessage(null);
+  //   setUserEmailError(null);
+  //   setIsSendingUserEmail(false);
+  //   if (userDetails) {
+  //     setCurrentStep('assessment'); // If user details exist, go directly to assessment
+  //   } else {
+  //     setCurrentStep('userInfo'); // Otherwise, go to user info form
+  //   }
+  // };
   
   // This function is called when 'Back' is clicked during the assessment
   const handleBackFromAssessment = () => {
@@ -166,9 +166,13 @@ function App() {
         throw new Error(responseData.message || `HTTP error! status: ${response.status}`);
       }
       setUserEmailSentMessage(responseData.message || "Email sent successfully!");
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error sending email to user:', error);
-      setUserEmailError(error.message || "Failed to send email.");
+      if (error instanceof Error) {
+        setUserEmailError(error.message || "Failed to send email.");
+      } else {
+        setUserEmailError("An unknown error occurred.");
+      }
     } finally {
       setIsSendingUserEmail(false);
     }
@@ -217,8 +221,8 @@ function App() {
           <h3 className="text-xl font-semibold text-brand-text-heading mb-4">Summary:</h3> {/* Card title color */}
           <p className="text-brand-text-body mb-1.5"><strong>Name:</strong> {userDetails?.name}</p> {/* Text color */}
           <p className="text-brand-text-body mb-1.5"><strong>Email:</strong> {userDetails?.email}</p> {/* Text color */}
-          <p className="text-brand-text-body mb-1.5"><strong>Total Score:</strong> {assessmentData.totalScore} / {assessmentData.maxScore}</p> {/* Text color */}
-          <p className="text-brand-text-body"><strong>Severity:</strong> {assessmentData.severityLevel.charAt(0).toUpperCase() + assessmentData.severityLevel.slice(1)}</p> {/* Text color */}
+          <p className="text-brand-text-body mb-1.5"><strong>Total Score:</strong> {assessmentData.totalScore} / {assessmentData.maxScore} ({Math.round((assessmentData.totalScore / assessmentData.maxScore) * 100)}%)</p> {/* Text color */}
+          <p className="text-brand-text-body"><strong>Severity:</strong> {assessmentData.severityLevel}</p> {/* Text color */}
         </div>
 
         {/* AI Interpretation Section */}
