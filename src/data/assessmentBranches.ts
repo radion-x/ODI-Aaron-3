@@ -96,16 +96,16 @@ export const assessmentBranches: Record<string, AssessmentBranch> = {
         ]
       },
       {
-        id: 'sexLife',
-        question: 'Sex Life (if applicable)',
+        id: 'intimateRelationships',
+        question: 'Intimate Relationships & Activities (if applicable)',
         type: 'multiple_choice',
         options: [
-          'My sex life is normal and causes no extra pain.',
-          'My sex life is normal but causes some extra pain.',
-          'My sex life is nearly normal but is very painful.',
-          'My sex life is severely restricted by pain.',
-          'My sex life is nearly absent because of pain.',
-          'Pain prevents any sex life at all.'
+          'I can participate in intimate relationships and activities as usual, without additional discomfort.',
+          'I can participate in intimate relationships and activities as usual, but they cause some additional discomfort.',
+          'I can participate in intimate relationships and activities, but they are often uncomfortable or painful.',
+          'My participation in intimate relationships and activities is limited due to discomfort or pain.',
+          'I rarely participate in intimate relationships and activities because of discomfort or pain.',
+          'I am unable to participate in any intimate relationships or activities due to discomfort or pain.'
         ]
       },
       {
